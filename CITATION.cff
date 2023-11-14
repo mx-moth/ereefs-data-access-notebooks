@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: ereefs data access emsarray notebooks
+version: 0.6.1
+date-released: 2023-11-14
+type: software
+authors:
+  - given-names: Tim
+    family-names: Heap
+    email: tim.heap@csiro.au
+    affiliation: Commonwealth Scientific and Industrial Research Organisation
+  - given-names: Matthew
+    family-names: Wildie
+    affiliation: Commonwealth Scientific and Industrial Research Organisation
+    email: Matt.Wildie@csiro.au
+references:
+  - type: generic
+    publisher:
+      name: CSIRO
+license: BSD-3-Clause
