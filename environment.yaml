@@ -2,6 +2,7 @@ channels:
   - conda-forge
 
 dependencies:
+  - ipython
   - jupyterlab
   - ipympl
   - jupyter_bokeh
@@ -15,3 +16,8 @@ dependencies:
   - matplotlib >=3.5.2
   - scipy
   - ffmpeg
+
+  # These are needed to build the documentation
+  - sphinx ~=7.2.0
+  - nbsphinx ~=0.9.3
+  - pandoc ~=3.1.3
