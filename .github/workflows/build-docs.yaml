@@ -10,6 +10,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v1
+
       - name: Cache conda packages
         uses: actions/cache@v3
         env:
@@ -20,6 +21,7 @@ jobs:
           key:
             ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{
             hashFiles('environment.yaml') }}
+
       - uses: conda-incubator/setup-miniconda@v3
         with:
           python-version: "3.11"
@@ -31,4 +33,29 @@ jobs:
 
       - shell: bash -el {0}
         run: |
+          # Compile documentation
           make dirhtml
+          # Ensure permissions meet github pages requirements
+          chmod -c -R +rX "build/"
+
+      - uses: actions/upload-pages-artifact@v2
+        with:
+          path: "build/dirhtml/"
+
+  deploy-docs:
+    needs: build-docs
+
+    # Grant permissions to deploy to pages
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
