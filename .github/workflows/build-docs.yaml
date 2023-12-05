@@ -2,6 +2,7 @@ name: "Build docs for Github Pages"
 
 on:
 - push
+- workflow_dispatch
 
 jobs:
   build-docs:
