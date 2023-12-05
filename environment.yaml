@@ -1,3 +1,5 @@
+name: "ereefs-data-access-notebooks"
+
 channels:
   - conda-forge
 

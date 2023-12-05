@@ -1,0 +1,23 @@
+name: "Build docs for Github Pages"
+
+on:
+- push
+
+jobs:
+  build-docs:
+    name: Build docs
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v1
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          python-version: "3.11"
+          mamba-version: "*"
+          channels: conda-forge,defaults
+          channel-priority: true
+          activate-environment: "ereefs-data-access-notebooks"
+          environment-file: environment.yaml
+
+      - shell: bash -el {0}
+        run: |
+          make dirhtml
